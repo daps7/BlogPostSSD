@@ -60,6 +60,21 @@
                         <a href="https://tailwindcss.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Tailwind Css">Tailwind CSS</a>
                     </li>
                 </ul>
+                @foreach ($posts as $post)
+                    <div class="post">
+                        <h2>{{ $post->title }}</h2>
+                        <p>{{ $post->description }}</p>
+                        <div>
+                            <button onclick="likePost({{ $post->id }})">
+                                <i class="fa fa-thumbs-up"></i>
+                                <span id="like-count-{{ $post->id }}">{{ $post->likes->count() }}</span>
+                            </button>
+                            <button onclick="favoritePost({{ $post->id }})">
+                                <i class="fa fa-star"></i>
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

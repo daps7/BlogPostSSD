@@ -19476,6 +19476,19 @@ process.umask = function() { return 0; };
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/ 	function likePost(postId) {
+        fetch(`/like/${postId}`, {
+        method: 'POST',
+        headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById(`like-count-${postId}`).innerText = data.likes;
+  })
+  .catch(error => console.error('Error:', error));
+}
 /******/ })()
 ;

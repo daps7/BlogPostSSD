@@ -17,6 +17,20 @@
     <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
         {{ $post->description }}
     </p>
+
+    <form action="{{ route('posts.like', $post) }}" method="POST">
+        @csrf
+        <button type="submit">
+            {{ $post->isLikedBy(auth()->user()) ? 'Unlike' : 'Like' }}
+        </button>
+    </form>
+
+    <form action="{{ route('posts.favorite', $post) }}" method="POST">
+        @csrf
+        <button type="submit">
+            {{ $post->isFavoritedBy(auth()->user()) ? 'Unfavorite' : 'Favorite' }}
+        </button>
+    </form>
 </div>
 
-@endsection 
+@endsection

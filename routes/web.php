@@ -23,6 +23,14 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/like/{post}', [PostsController::class, 'like'])->name('post.like');
+Route::post('/favorite/{post}', [PostsController::class, 'favorite'])->name('post.favorite');
+Route::get('/favorites', [PostsController::class, 'favorites'])->name('post.favorites');
+
+Route::post('/posts/{post}/like', [PostsController::class, 'like'])->name('posts.like');
+Route::post('/posts/{post}/favorite', [PostsController::class, 'favorite'])->name('posts.favorite');
+Route::get('/favorites', [PostsController::class, 'favorites'])->name('favorites');
+
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
