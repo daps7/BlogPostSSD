@@ -34,9 +34,8 @@ class Post extends Model
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
-    public function isFavoritedBy($user)
+    public function isFavoritedBy(User $user)
     {
-        if (!$user) return false;
         return $this->favorites()->where('user_id', $user->id)->exists();
     }
 
