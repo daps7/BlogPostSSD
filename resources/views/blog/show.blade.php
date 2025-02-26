@@ -18,19 +18,12 @@
         {{ $post->description }}
     </p>
 
-    <form action="{{ route('posts.like', $post) }}" method="POST">
-        @csrf
-        <button type="submit">
-            {{ $post->isLikedBy(auth()->user()) ? 'Unlike' : 'Like' }}
+    <div>
+        <button class="like-button" data-post-id="{{ $post->id }}">
+            {{ $post->likes()->where('user_id', auth()->id())->exists() ? 'Unlike' : 'Like' }}
         </button>
-    </form>
-
-    <form action="{{ route('posts.favorite', $post) }}" method="POST">
-        @csrf
-        <button type="submit">
-            {{ $post->isFavoritedBy(auth()->user()) ? 'Unfavorite' : 'Favorite' }}
-        </button>
-    </form>
+        <span id="like-count-{{ $post->id }}">{{ $post->likes()->count() }}</span> likes
+    </div>
 </div>
 
 @endsection

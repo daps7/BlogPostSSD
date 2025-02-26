@@ -1,7 +1,17 @@
 require('./bootstrap');
 
-function likePost(postId) {
-    fetch(`/like/${postId}`, {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            const postId = this.dataset.postId;
+            likePost(postId, this);
+        });
+    });
+});
+
+function likePost(postId, button) {
+    fetch(`/posts/${postId}/like`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -10,19 +20,12 @@ function likePost(postId) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById(`like-count-${postId}`).innerText = data.likes;
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-function favoritePost(postId) {
-    fetch(`/favorite/${postId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        if (data.likes !== undefined) {
+            document.getElementById(`like-count-${postId}`).innerText = data.likes;
+            button.innerText = data.liked ? 'Unlike' : 'Like';
+        } else {
+            alert(data.message);
         }
     })
-    .then(response => response.json())
     .catch(error => console.error('Error:', error));
 }

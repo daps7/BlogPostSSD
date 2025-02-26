@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\Like;
 
 class PostsController extends Controller
 {
@@ -127,6 +128,30 @@ class PostsController extends Controller
 
         return redirect('/blog')
             ->with('message', 'Your post has been deleted!');
+    }
+
+    public function like($id)
+    {
+        $post = Post::findOrFail($id);
+
+        // Check if the user has already liked the post
+        $existingLike = Like::where('post_id', $id)->where('user_id', auth()->user()->id)->first();
+        if ($existingLike) {
+            // Unlike the post
+            $existingLike->delete();
+            $likesCount = Like::where('post_id', $post->id)->count();
+            return response()->json(['likes' => $likesCount, 'liked' => false]);
+        }
+
+        // Create a new like entry
+        Like::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        // Get the updated likes count
+        $likesCount = Like::where('post_id', $post->id)->count();
+        return response()->json(['likes' => $likesCount, 'liked' => true]);
     }
 }
 
