@@ -22,7 +22,7 @@ class PostsController extends Controller
     public function index()
     {
         return view('blog.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
+        ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
     }
 
     /**
@@ -73,8 +73,9 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        return view('blog.show')
-            ->with('post', Post::where('slug', $slug)->first());
+        $post = Post::where('slug', $slug)->first();
+    
+        return view('blog.show')->with('post', $post);
     }
 
     /**

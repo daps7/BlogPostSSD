@@ -22,10 +22,10 @@ html {
 
 body {
   margin: 0;
-  background-image: url('../images/blogbackground.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: lightblue; /* Added background color */
 }
 
 /**
@@ -44,6 +44,7 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+
 }
 
 /* Grouping content
