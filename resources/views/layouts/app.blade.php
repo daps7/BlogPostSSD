@@ -49,6 +49,7 @@
         </header>
 
         @yield('content')
+        @include('layouts.footer') <!-- Ensure this line is present to include the footer -->
     </div>
 </body>
 </html>

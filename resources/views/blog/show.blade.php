@@ -17,8 +17,5 @@
     <p class="text-xl text-black-700 pt-8 pb-10 leading-8 font-light">
         {{ $post->description }}
     </p>
-
-    
 </div>
-
 @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::post('/blog/favorite/{id}', [PostsController::class, 'favorite'])->name('
 
 // Add the route for displaying a single blog post
 Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blogs.show');
+Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show');
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 
 // Remove redundant routes
 // Route::post('/like/{id}', [PostsController::class, 'like']);
