@@ -38,7 +38,7 @@
     </div>
 @endif
 
-@if (Auth::check())
+@if (Auth::check() && Auth::user()->role > 1)
     <div class="pt-15 w-4/5 m-auto">
         <a 
             href="/blog/create"
@@ -143,6 +143,7 @@
     .apply-button {
         background-color: #007bff;
         color: white;
+        margin-top: 10px; /* Added padding */
     }
 
     .create-button {

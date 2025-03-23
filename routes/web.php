@@ -44,3 +44,7 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 
 Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'index'])->name('favourites');
 
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+
+require __DIR__.'/about.php';
+

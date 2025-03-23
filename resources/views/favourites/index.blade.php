@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto px-6 py-8">
-    <h1 class="text-2xl font-bold mb-6">Your Favourites</h1>
+    <h1 class="text-2xl font-bold mb-6">Your Favourite Blogs</h1>
     @if($favorites->isEmpty())
         <p>You have no favourited blogs.</p>
     @else

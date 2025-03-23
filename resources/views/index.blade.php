@@ -12,6 +12,7 @@
                     Our many journalists scattered across all major leagues are here to report to you.</h2>
             </div>
         </div>
+        <img src="{{ asset('images/FootyInsights.jpg') }}" alt="Footy Insights" class="w-full h-auto mb-10">
         <hr class="my-4">
         <div class="text-center p-15 text-black mx-auto w-full">
             <div class="text-center w-auto mx-auto">
@@ -33,16 +34,15 @@
                 </span>
             </div>
         </div>
-        <hr class="my-4">
+
         <div class="text-center w-auto mx-auto">
             <a 
                 href="/blog"
                 class="text-black py-2 px-4 font-bold text-xl inline-block">
-                Show Me The Latest Blogs
+               Click Me For The Latest Blogs
             </a>
         </div>
     </div>
-    <hr class="my-4">
     <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
         <div>
             <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" width="700" alt="">
@@ -50,11 +50,5 @@
         <div>
             <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" alt="">
         </div>
-    </div>
-    <hr class="my-4">
-    <div class="text-center w-auto mx-auto py-15">
-        <h2 class="text-2xl font-bold mb-4">Want to Become a Journalist?</h2>
-        <p class="text-lg mb-4">Are you passionate about football and want to share your insights with the world? Join our team of journalists!</p>
-        <p class="text-lg">Email us at <a href="mailto:journalist@footyinsights.com" class="text-blue-500 hover:underline">journalist@footyinsights.com</a> to apply.</p>
     </div>
 @endsection
