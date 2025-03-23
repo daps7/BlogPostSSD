@@ -35,7 +35,7 @@
                         @endif
                     @else
                         <span>{{ Auth::user()->name }}</span>
-
+                        <a href="{{ route('favourites') }}" class="no-underline hover:underline">{{ __('Favourites') }}</a>
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
                            onclick="event.preventDefault();

@@ -27,10 +27,17 @@ Route::post('/posts/{post}/like', [PostsController::class, 'like'])->name('posts
 Route::post('/posts/{post}/favorite', [PostsController::class, 'favorite'])->name('posts.favorite');
 Route::get('/favorites', [PostsController::class, 'favorites'])->name('favorites');
 
+Route::post('/blog/favorite/{id}', [PostsController::class, 'favorite'])->name('blog.favorite');
+
+// Add the route for displaying a single blog post
+Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blogs.show');
+
 // Remove redundant routes
 // Route::post('/like/{id}', [PostsController::class, 'like']);
 
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'index'])->name('favourites');
 

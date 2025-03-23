@@ -95,11 +95,34 @@
                     </form>
                 </span>
             @endif
+
+            <!-- Favorite Button -->
+            <button class="favorite-button" onclick="toggleFavorite({{ $post->id }})">
+                {{ auth()->user()->favorites()->where('post_id', $post->id)->exists() ? 'Unfavorite' : 'Favorite' }}
+            </button>
         </div>
     </div>    
 @endforeach
 
 @endsection
+
+<script>
+    function toggleFavorite(postId) {
+        fetch(`/blog/favorite/${postId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const button = document.querySelector(`button[onclick="toggleFavorite(${postId})"]`);
+            button.textContent = data.favorited ? 'Unfavorite' : 'Favorite';
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
 
 <style>
     .search-bar {
@@ -110,7 +133,7 @@
         margin-bottom: 10px;
     }
 
-    .apply-button, .create-button, .keep-reading-button, .edit-button, .delete-button {
+    .apply-button, .create-button, .keep-reading-button, .edit-button, .delete-button, .favorite-button {
         padding: 10px 20px;
         border-radius: 5px;
         border: none;
@@ -142,7 +165,12 @@
         color: white;
     }
 
-    .apply-button:hover, .create-button:hover, .keep-reading-button:hover, .edit-button:hover, .delete-button:hover {
+    .favorite-button {
+        background-color: #ff69b4;
+        color: white;
+    }
+
+    .apply-button:hover, .create-button:hover, .keep-reading-button:hover, .edit-button:hover, .delete-button:hover, .favorite-button:hover {
         opacity: 0.8;
     }
 </style>

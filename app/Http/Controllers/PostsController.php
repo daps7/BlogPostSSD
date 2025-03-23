@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Models\Like;
+use App\Models\Favorite;
 
 class PostsController extends Controller
 {
@@ -171,6 +172,27 @@ class PostsController extends Controller
         // Get the updated likes count
         $likesCount = Like::where('post_id', $post->id)->count();
         return response()->json(['likes' => $likesCount, 'liked' => true]);
+    }
+
+    public function favorite(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+
+        // Check if the user has already favorited the post
+        $existingFavorite = Favorite::where('post_id', $id)->where('user_id', auth()->user()->id)->first();
+        if ($existingFavorite) {
+            // Unfavorite the post
+            $existingFavorite->delete();
+            return response()->json(['favorited' => false]);
+        }
+
+        // Create a new favorite entry
+        Favorite::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return response()->json(['favorited' => true]);
     }
 }
 
