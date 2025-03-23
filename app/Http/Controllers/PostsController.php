@@ -19,10 +19,28 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('blog.index')
-        ->with('posts', Post::orderBy('updated_at', 'DESC')->get());
+        $query = Post::query();
+
+        // Search functionality
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . $request->input('search') . '%')
+                  ->orWhere('description', 'like', '%' . $request->input('search') . '%');
+        }
+
+        // Sort functionality
+        if ($request->has('sort')) {
+            $sortColumn = $request->input('sort');
+            $sortDirection = $request->input('direction', 'asc');
+            $query->orderBy($sortColumn, $sortDirection);
+        } else {
+            $query->orderBy('updated_at', 'DESC');
+        }
+
+        $posts = $query->get();
+
+        return view('blog.index')->with('posts', $posts);
     }
 
     /**
