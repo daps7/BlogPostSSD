@@ -1,47 +1,70 @@
 ## Laravel 8 Complete Blog
 
-This repository is linked to [this youtube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s) where I show you how to create a complete blog in Laravel 8 using best practices.
+This repository demonstrates how to create a complete blog in Laravel 8 using best practices. It is based on [this YouTube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s).
 
-•	Author: Dylan Smyth
+• **Author**: Dylan Smyth
+
+---
 
 ## Requirements
-•	PHP 7.3 or higher <br>
-•	Node 12.13.0 or higher <br>
+- PHP 7.3 or higher  
+- Node.js 12.13.0 or higher  
 
-## Usage <br>
-Setting up your development environment on your local machine: <br>
-```
-git clone git@github.com:codewithdary/laravel-8-complete-blog.git
-cd laravel-8-complete-blog
-cp .env.example .env
-composer install
-php artisan key:generate
-php artisan cache:clear && php artisan config:clear
-php artisan serve
-```
+---
 
-## Before starting <br>
-Create a database <br>
-```
-mysql
-create database laravelblog;
-exit;
-```
+## Installation
 
-Setup your database credentials in the .env file <br>
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravelblog
-DB_USERNAME={USERNAME}
-DB_PASSWORD={PASSWORD}
-```
+Follow these steps to set up the project on your local machine:
 
-Migrate the tables
-```
-php artisan migrate
-```
+1. Clone the repository:
+   
+   git clone git@github.com:codewithdary/laravel-8-complete-blog.git
+   cd laravel-8-complete-blog
+   
+
+2. Copy the example environment file and install dependencies:
+ 
+   cp .env.example .env
+   composer install
+   
+
+3. Generate the application key and clear caches:
+   
+   php artisan key:generate
+   php artisan cache:clear && php artisan config:clear
+   
+
+4. Start the development server:
+   
+   php artisan serve
+   
+
+---
+
+## Database Setup
+
+1. Create a new database:
+   
+   mysql
+   create database laravelblog;
+   exit;
+   
+
+2. Update your `.env` file with the database credentials:
+  
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laravelblog
+   DB_USERNAME=root
+  
+
+3. Run the migrations to create the necessary tables:
+
+   php artisan migrate
+
+---
 
 ## Contributing
-Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
+
+Contributions are welcome! Feel free to adapt or add features, report bugs, or submit pull requests to improve the project.
